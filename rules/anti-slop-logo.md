@@ -32,15 +32,15 @@ The logo prompt is driven by the same visual archetype system that drives produc
 - Product photos already look good because they describe *physical materials and lighting*, not font names — the logo prompt now follows the same principle
 - Each archetype maps to an industry cluster, so a sneaker brand (urban-edge) automatically gets different type than a ceramics brand (heritage-craft)
 
-**The 6 archetype typography personalities:**
+**The 6 archetype typography personalities (49 style entries, 680+ keywords):**
 | Archetype | Type personality | Industries |
 |---|---|---|
-| urban-edge | Condensed grotesque, tight apertures, industrial weight | fashion, footwear, auto, eyewear, music |
-| heritage-craft | Refined transitional serif, high-contrast strokes, classical | food, furniture, stationery, homeware, leather, art |
-| opulent-classic | High-contrast didone, hairline serifs, dramatic thick-thin | spirits, jewelry, fragrance, aviation, hotel, finance |
-| clean-modern | Neo-grotesque, neutral proportions, even stroke | real estate, beauty, medical, education, consulting |
-| natural-organic | Humanist sans-serif, soft terminals, open apertures | wellness, outdoor, spa, children, wedding, florist |
-| tech-forward | Geometric sans-serif, uniform stroke, precise curves | tech, fitness, gaming, coworking |
+| urban-edge | Condensed grotesque, tight apertures, industrial weight | fashion, footwear, auto, eyewear, music, nightlife, bar, skateboard, street art, martial arts, boxing, tattoo, barbershop |
+| heritage-craft | Refined transitional serif, high-contrast strokes, classical | food, restaurant, bakery, furniture, stationery, homeware, leather, art, blacksmith, metalwork |
+| opulent-classic | High-contrast didone, hairline serifs, dramatic thick-thin | spirits, brewery, distillery, jewelry, fragrance, aviation, yacht, hotel, fine dining, finance, cigar |
+| clean-modern | Neo-grotesque, neutral proportions, even stroke | real estate, beauty, medical, dental, education, consulting, law firm, accounting, insurance, cleaning, logistics, events |
+| natural-organic | Humanist sans-serif, soft terminals, open apertures | wellness, outdoor, spa, float therapy, hair salon, nail salon, children, wedding, florist, sustainable, farm |
+| tech-forward | Geometric sans-serif, uniform stroke, precise curves | tech, SaaS, AI, fitness, gaming, coworking, podcast, newsletter, creator, e-commerce |
 
 ### Color & layout
 - **Flat solid background** — not gradient, not textured, not patterned.
@@ -48,25 +48,30 @@ The logo prompt is driven by the same visual archetype system that drives produc
 - **One-third canvas width** — text too large is the #1 Ideogram artifact. Ask for small + compact.
 - **Wide empty margins** — more space than you think.
 
-## Good font recommendations by category
+## Font pools — per archetype (59 verified Google Fonts)
 
-### Modern sans (clean, contemporary)
-Inter, Space Grotesk, Outfit, Syne, Hanken Grotesk, General Sans
+Fonts are organized by archetype in the cosmic system prompt's TYPOGRAPHY section. Claude picks from the matching pool during brand synthesis. Each pool has 9-10 options with sub-style groups.
 
-### Geometric sans (precise, tech-forward)  
-DM Sans, Urbanist, Plus Jakarta Sans, Satoshi, Cabinet Grotesk
+| Archetype | Sub-styles | Example fonts |
+|---|---|---|
+| urban-edge | Condensed, Industrial, Structural | Oswald, Barlow Condensed, Bebas Neue, Anton, Teko |
+| heritage-craft | Editorial serif, Oldstyle, Characterful | DM Serif Display, Instrument Serif, EB Garamond, Fraunces |
+| opulent-classic | Didone, High-contrast, Luxury | Bodoni Moda, Libre Bodoni, GFS Didot, Playfair Display |
+| clean-modern | Neo-grotesque, Professional, Refined | Inter, Hanken Grotesk, Work Sans, Outfit, Schibsted Grotesk |
+| natural-organic | Humanist, Rounded, Warm geometric | Cabin, Nunito Sans, Quicksand, Figtree, Maven Pro |
+| tech-forward | Geometric, Engineered, Monospace | Sora, Urbanist, Jost, Space Grotesk, Space Mono |
 
-### Modern serif (refined, editorial)
-DM Serif Display, Libre Baskerville, Fraunces, Instrument Serif
-
-### Display (distinctive, brand-forward)
-Unbounded, Syne, Space Mono (mono display), JetBrains Mono
+Full list: see `TYPOGRAPHY — ARCHETYPE FONT MATCHING` section in `apps/worker/src/lib/prompts/cosmic-system.ts`.
 
 **Rule:** Every brand should feel different. If your last 5 brands all got the same font, something is wrong.
 
+## Logo model pipeline (swappable)
+
+Models are tried in priority order via `LOGO_MODELS` array in `canvas-logo.ts`. Current order: FLUX 2 Pro (primary) → Ideogram v3 (fallback) → Recraft V4 SVG (last resort). To test a different model, edit the array — no other changes needed.
+
 ## Post-processing pipeline (for programmatic logo generation)
 
-When generating logos programmatically (Ideogram, Recraft), always post-process:
+When generating logos programmatically (FLUX, Ideogram, Recraft), always post-process:
 
 1. **Extract text as greyscale mask** — preserves anti-aliased edges
 2. **Replace background with exact hex** — AI never gets the exact brand color right

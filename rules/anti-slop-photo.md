@@ -60,6 +60,7 @@ The lifestyle prompt uses this to show the person interacting with a specific, d
 ```
 [Color: brand color as product tone, packaging in sub-color, natural background]
 [What: product name, brand name, productPhotoDesc (photographer direction, not marketing copy)]
+[Staging: productContext from photo-styles — category-specific surface and setup]
 [Visual direction: same as lifestyle — consistency across the brand]
 [Tactile: "Every material rendered with tactile precision"]
 [Focus: "Shallow depth of field — product razor-sharp, background gradient"]
@@ -68,6 +69,12 @@ The lifestyle prompt uses this to show the person interacting with a specific, d
 [Photographer reference]
 [Constraints: "Photorealistic. Not a 3D render, not illustrated. No text, no watermarks, no human hands."]
 ```
+
+**productContext** — category-specific surface/staging direction from photo-styles.ts. Examples:
+- Whisky: "Polished dark marble or wet bar surface. Single bottle and glass, precise ice or condensation."
+- Fashion: "Draped on aged oak or linen, flat-lay on stone floor. Fabric texture sharp in foreground."
+- Tech: "White infinite background or polished concrete. Hard directional light from one angle."
+This grounds the product in a physical environment even when photoDesc describes a service scene.
 
 **productPhotoDesc vs productDesc:** The product description is marketing copy ("Hand-thrown ceramic mug in ash glaze"). The photo description is photographer direction ("Single ceramic mug on weathered oak board, steam rising, morning side light"). Use the photo description in prompts — it tells the AI what to shoot, not what to sell.
 

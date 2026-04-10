@@ -36,13 +36,12 @@ Apply these when writing prompts for FLUX 2 Pro, Midjourney, DALL-E, or any AI i
 [Emotional framing: "Intimate editorial photograph" not "Editorial lifestyle photograph"]
 [Brand mood: voice descriptors as comma-separated adjectives]
 [Visual direction: AI-generated per-brand, not hardcoded per industry]
-[Modern anchor: "Modern, contemporary interior."]
-[Environment: "Real environment, not staged."]
-[Person: "A real person using the product, mid-gesture, unaware of camera."]
-[Face: "Face visible in three-quarter view, eyes on the task, never looking at camera."]
+[Modern anchor + scene: "Modern, contemporary interior." + industry-specific scene details]
+[Person with product: name the specific product + use productPhotoDesc for what they're doing with it]
+[Face: "Face visible, eyes on the task, never looking at camera."]
 [Gesture: "The gesture feels {voiceDescriptor1} and {voiceDescriptor2}."]
 [Texture: "Natural skin texture, slight imperfections."]
-[Clothing: "Wearing simple high-quality clothing in muted tones."]
+[Clothing: "Dressed simply — quality fabrics, understated, fitting the space."]
 [Technical: camera format + film stock + lighting + composition from archetype]
 [Photographer reference: specific names with campaigns/publications]
 [Anti-slop anchors: "Understated, human, grounded."]
@@ -50,10 +49,17 @@ Apply these when writing prompts for FLUX 2 Pro, Midjourney, DALL-E, or any AI i
 [Constraints: "No text, no logos, no watermarks."]
 ```
 
+**Key pattern: productPhotoDesc** — Don't describe the product generically ("using the product"). Instead, generate a photographer direction per product that tells the AI what to shoot:
+- Physical: "Single whisky bottle on dark marble, side-lit, condensation on glass, wax seal visible"
+- Service: "Two people mid-conversation at a glass table, documents between them, natural window light"
+- Experience: "Empty dental chair in modern treatment room, warm wood accents, morning light through frosted glass"
+
+The lifestyle prompt uses this to show the person interacting with a specific, described product — not a vague "using a product."
+
 ### For product photography:
 ```
 [Color: brand color as product tone, packaging in sub-color, natural background]
-[What: product name, brand name, description]
+[What: product name, brand name, productPhotoDesc (photographer direction, not marketing copy)]
 [Visual direction: same as lifestyle — consistency across the brand]
 [Tactile: "Every material rendered with tactile precision"]
 [Focus: "Shallow depth of field — product razor-sharp, background gradient"]
@@ -63,12 +69,15 @@ Apply these when writing prompts for FLUX 2 Pro, Midjourney, DALL-E, or any AI i
 [Constraints: "Photorealistic. Not a 3D render, not illustrated. No text, no watermarks, no human hands."]
 ```
 
+**productPhotoDesc vs productDesc:** The product description is marketing copy ("Hand-thrown ceramic mug in ash glaze"). The photo description is photographer direction ("Single ceramic mug on weathered oak board, steam rising, morning side light"). Use the photo description in prompts — it tells the AI what to shoot, not what to sell.
+
 ### For architectural/interior photography:
 ```
 [Color: brand color as architectural accent, subtle, not dominant]
 [What: interior photograph for brand — category]
 [Visual direction: same as other images]
-[Modern anchor: "Modern, contemporary interior."]
+[Modern anchor + scene: "Modern, contemporary interior." + industry-specific space description]
+[Architectural details: lighting, composition, spatial depth from archetype]
 [Depth: "The space has depth — foreground, midground, background all visible."]
 [Technical: camera + film stock]
 [Photographer reference]
@@ -84,3 +93,5 @@ Apply these when writing prompts for FLUX 2 Pro, Midjourney, DALL-E, or any AI i
 4. **Mood words from the brand > generic adjectives** — "honest, unhurried, tactile" > "beautiful, stunning, amazing"
 5. **"Modern, contemporary" as an anchor** — prevents the scene from going rustic/traditional even with specific cultural references
 6. **Person uniqueness from brand voice, not industry template** — two food brands get different human energy because their voice descriptors differ
+7. **Photographer direction > marketing copy** — "Single whisky bottle on dark marble, side-lit" > "Premium aged whisky, crafted with care." Tell the AI what to photograph, not what to advertise.
+8. **Name the product in the scene** — "A real person with Omakase Board — charcoal-grilled tasting set" > "A person using the product." Specificity prevents generic output.

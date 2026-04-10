@@ -8,14 +8,39 @@ Apply these when generating logos, wordmarks, or making typography decisions for
 - **Don't default to Cormorant Garamond** — it's the #1 AI-generated font. Claude picks it 80% of the time if you list it as an example.
 - **Don't default to serif** — modern default is sans-serif. Serif is a deliberate choice, not a fallback.
 - **Don't use only serif examples** — if listing font options, span serif, sans, and geometric equally.
-- **Don't describe font style when you already named the font** — "DM Sans" is enough. Adding "hairline thin strokes, sharp terminals" overrides the font name and produces a serif regardless.
 
 ### Prompt engineering
-- **Don't reference luxury houses** — "Hermès, Bottega Veneta, Cartier" biases Ideogram/Midjourney toward one specific serif aesthetic. Say "contemporary typographic quality" instead.
-- **Don't say "elegant high-contrast serif"** — this forces serif even when the font is "Inter."
+- **Don't reference luxury houses** — "Hermès, Bottega Veneta, Cartier" biases Ideogram/Midjourney toward one specific serif aesthetic.
 - **Don't say "luxurious"** — say "clean, minimal, modern."
-- **Do say the exact font name** — "Typeface: Space Grotesk" > "modern sans-serif typography."
 - **Do use a negative prompt** — block: oversized text, decorative elements, gradients, multiple text lines, icons, symbols.
+- **Don't say just the font name** — AI image generators can't render actual fonts. "Typeface: Space Grotesk" alone makes the AI guess what that name looks like. Describe the letterform characteristics instead.
+
+### Typography strategy: archetype-driven (how it works now)
+
+The logo prompt is driven by the same visual archetype system that drives product/lifestyle/store photography. This ensures the logo's typographic personality matches the rest of the brand's visual world.
+
+**How the prompt is assembled:**
+1. Archetype `typographyStyle` leads — describes letterform characteristics using typographic vocabulary (grotesque, didone, humanist, neo-grotesque, geometric). This is the primary instruction the AI follows.
+2. `headingFont` is a soft hint — "In the character of Space Grotesk" not "Typeface: Space Grotesk". The AI uses this as a reference point, not a literal font to render.
+3. Voice descriptors add brand personality — "bold, unapologetic, raw" tells the AI the emotional weight.
+4. `visualDirection` grounds the overall aesthetic — same one-sentence direction used across all images.
+5. Spacing/kerning language — "Generous letter-spacing, optically kerned" prevents the AI from cramming letters.
+
+**Why this works better than exact font names:**
+- AI generators don't have font files — they interpret font names as vague visual concepts
+- Typographic vocabulary (tight apertures, hairline serifs, uniform stroke weight) gives the AI specific visual properties to render
+- Product photos already look good because they describe *physical materials and lighting*, not font names — the logo prompt now follows the same principle
+- Each archetype maps to an industry cluster, so a sneaker brand (urban-edge) automatically gets different type than a ceramics brand (heritage-craft)
+
+**The 6 archetype typography personalities:**
+| Archetype | Type personality | Industries |
+|---|---|---|
+| urban-edge | Condensed grotesque, tight apertures, industrial weight | fashion, footwear, auto, eyewear, music |
+| heritage-craft | Refined transitional serif, high-contrast strokes, classical | food, furniture, stationery, homeware, leather, art |
+| opulent-classic | High-contrast didone, hairline serifs, dramatic thick-thin | spirits, jewelry, fragrance, aviation, hotel, finance |
+| clean-modern | Neo-grotesque, neutral proportions, even stroke | real estate, beauty, medical, education, consulting |
+| natural-organic | Humanist sans-serif, soft terminals, open apertures | wellness, outdoor, spa, children, wedding, florist |
+| tech-forward | Geometric sans-serif, uniform stroke, precise curves | tech, fitness, gaming, coworking |
 
 ### Color & layout
 - **Flat solid background** — not gradient, not textured, not patterned.
